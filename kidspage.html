@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kids Group Coaching</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #101010;
+      color: #fff;
+    }
+
+    .container-hold {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 60vh;
+      /* 60% of viewport height */
+      padding: 25px 20px;
+      text-align: center;
+      color: white;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      max-width: 100%;
+      z-index: 1;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      /* Send the image behind the text */
+      border-radius: 15px;
+      /* Same border radius as the hero section */
+      object-position: 0 30%;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        height: 50vh;
+        /* Adjust the height for smaller screens like tablets */
+      }
+
+      .hero-image {
+        object-fit: cover;
+        /* Still cover the section */
+        height: 100%;
+        /* Ensure it stretches to fill the height of the section */
+        max-height: 100%;
+        /* Ensure image stays within boundaries */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-section {
+        height: 40vh;
+        /* Even smaller height for mobile devices */
+      }
+
+      .hero-image {
+        object-fit: cover;
+        /* Continue to cover the section */
+        height: 100%;
+        /* Ensure it stretches to fill the height of the section */
+        max-height: 100%;
+        /* Restrict the image height */
+      }
+    }
+
+    .content {
+      position: relative;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      max-width: 1300px;
+      width: 100%;
+      margin-top: 203px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .level {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .level span {
+      font-size: 2.2rem;
+      margin-right: 20px;
+      color: white;
+    }
+
+    .level-button {
+      padding: 8px 15px;
+      margin: 5px;
+      background-color: #ed2236;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .level-button.active {
+      background-color: white;
+      color: #ed2236; /* Red text color */
+    }
+
+    .level-button {
+      padding: 8px 15px;
+      margin: 5px;
+      background-color: #ed2236;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .level-button:hover {
+      background-color: #ff4050;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .class-packages {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 40px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .class-packages h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #ed2236;
+      padding-bottom: 10px;
+      color: #ed2236;
+    }
+
+    table {
+      width: 100%;
+      text-align: left;
+      border-collapse: collapse;
+      margin-top: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    th,
+    td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #ed2236;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    td {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .book-now {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .book-now button {
+      background-color: #ed2236;
+      color: white;
+      border: none;
+      padding: 9px 25px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .book-now button:hover {
+      background-color: #ff4050;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .level span {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .level-button {
+        font-size: 0.8rem;
+        padding: 10px;
+      }
+
+      .class-packages h2 {
+        font-size: 1.5rem;
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .level-button {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      table {
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      th,
+      td {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .class-packages h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+  <body>
+    <section class="hero-section">
+      <img
+        id="hero-image"
+        src="1.jpeg"
+        alt="Coaching Level"
+        class="hero-image"
+      />
+      <div class="container-hold">
+        <div class="content">
+          <h1 id="coaching-title" style="color: white">KIDS GROUP COACHING</h1>
+          <div class="level">
+            <button
+              onmouseover="this.style.backgroundColor='#b81a29'; this.style.transform='scale(1.05)';"
+              onmouseout="this.style.backgroundColor='#ed2236'; this.style.transform='scale(1)';"
+              class="level-button"
+              onclick="changeContent('BEGINNER')"
+              style="
+                padding: 8px 15px;
+                margin: 5px;
+                background-color: #ed2236;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 2rem;
+                transition: background-color 0.3s ease;
+              "
+            >
+              BEGINNER
+            </button>
+            <button
+              onmouseover="this.style.backgroundColor='#b81a29'; this.style.transform='scale(1.05)';"
+              onmouseout="this.style.backgroundColor='#ed2236'; this.style.transform='scale(1)';"
+              style="
+                padding: 8px 15px;
+                margin: 5px;
+                background-color: #ed2236;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 2rem;
+                transition: background-color 0.3s ease;
+              "
+              class="level-button"
+              onclick="changeContent('INTERMEDIATE')"
+            >
+              INTERMEDIATE
+            </button>
+            <button
+              onmouseover="this.style.backgroundColor='#b81a29'; this.style.transform='scale(1.05)';"
+              onmouseout="this.style.backgroundColor='#ed2236'; this.style.transform='scale(1)';"
+              style="
+                padding: 8px 15px;
+                margin: 5px;
+                background-color: #ed2236;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 2rem;
+                transition: background-color 0.3s ease;
+              "
+              class="level-button"
+              onclick="changeContent('ELITE')"
+            >
+              ADVANCED
+            </button>
+          </div>
+          <p id="coaching-description" style="font-size: 20px">Loading....</p>
+          <div class="class-packages">
+            <h2 id="packages-title">CLASS PACKAGES</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sessions</th>
+                  <th>Hours</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="class-packages-table">
+                <!-- Data will be dynamically inserted here by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <div class="book-now">
+            <button>BOOK NOW</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function changeContent(level) {
+        const title = document.getElementById("coaching-title");
+        const description = document.getElementById("coaching-description");
+        const packagesTable = document.getElementById("class-packages-table");
+        const heroImage = document.getElementById("hero-image"); // Reference to the image element
+
+        // Clear previous table rows
+        packagesTable.innerHTML = "";
+
+        // Change image and content based on the level
+        let imageUrl = "";
+        switch (level) {
+          case "BEGINNER":
+            description.innerHTML =
+              "Our beginner class is designed for kids new to badminton, focusing on developing fundamental skills in a fun, engaging environment. Let them learn the basics while having a blast!";
+            packagesTable.innerHTML = `
+                    <tr><td>4</td><td>1 hr</td><td>200 AED</td></tr>
+                    <tr><td>8</td><td>1 hr</td><td>350 AED</td></tr>
+                    <tr><td>12</td><td>1 hr</td><td>500 AED</td></tr>
+                `;
+            imageUrl = "1.jpeg"; // Path to the beginner image
+            break;
+          case "INTERMEDIATE":
+            description.innerHTML =
+              "For kids with some experience, this class will sharpen their skills, improve footwork, and introduce more advanced techniques. Watch them take their game to the next level!";
+            packagesTable.innerHTML = `
+                    <tr><td>4</td><td>1.5 hrs</td><td>300 AED</td></tr>
+                    <tr><td>8</td><td>1.5 hrs</td><td>550 AED</td></tr>
+                    <tr><td>12</td><td>1.5 hrs</td><td>800 AED</td></tr>
+                `;
+            imageUrl = "2.jpeg"; // Path to the intermediate image
+            break;
+          case "ELITE":
+            description.innerHTML =
+              "Our elite coaching is designed for competitive young players who are serious about badminton. This class will hone their advanced skills and get them competition-ready!";
+            packagesTable.innerHTML = `
+                    <tr><td>4</td><td>2 hrs</td><td>400 AED</td></tr>
+                    <tr><td>8</td><td>2 hrs</td><td>750 AED</td></tr>
+                    <tr><td>12</td><td>2 hrs</td><td>1000 AED</td></tr>
+                `;
+            imageUrl = "3.jpeg"; // Path to the elite image
+            break;
+          default:
+            title.innerHTML = "KIDS GROUP COACHING";
+            description.innerHTML = "Select a coaching level to view details.";
+            imageUrl = "1.jpeg"; // Default image path
+        }
+
+        // Update the image source
+        heroImage.src = imageUrl;
+      }
+
+      // Display BEGINNER data by default
+      window.onload = function () {
+        changeContent("BEGINNER");
+      };
+    </script>
+  </body>
+</html>
